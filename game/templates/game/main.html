@@ -1,0 +1,23 @@
+{% extends 'game/layout.html' %}
+{% load static %}
+{% block title %}{{title}}{% endblock %}
+
+{% block content %}
+<section class="featured-games">
+    <div class="container1">
+      <h2>Featured Games</h2>
+      <div class="row">
+        {% for game in games %}
+        <div class="game">
+          <img src="{{game.imageURL}}" alt="Game Title" />
+          <div class="game-info">
+            <h3 class="game-title"><a href="{% url 'detail' game.id %}" style="text-decoration: none; color: black;">{{game.title}} ({{game.date_release}})</a></h3>
+            <p class="game-description">{{game.description}}..</p>
+            <a href="{% url 'detail' game.id %}" class="btn-secondary">Details</a>
+          </div> 
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+</section>
+{% endblock %}

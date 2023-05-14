@@ -1,0 +1,19 @@
+{% extends 'game/layout.html' %}
+{% load static %}
+
+{% block title %}{{prods.name}}{% endblock %}
+
+{% block content %}
+    <div class="detail">
+        <div class="detailimg">
+            <img src="{{prods.imageURL}}" alt="Game Title" />
+            <div>
+                <h3>Name : {{prods.title}}</h3>
+                <h3>Category : {{prods.cat}}</h3>
+                <h3>Description : {{prods.large_description}}</h3>
+                <h3>Data Relise : {{prods.date_release}}</h3>
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}

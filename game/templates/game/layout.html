@@ -1,0 +1,69 @@
+{% load static %}
+{% load game_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'image/icon/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'image/icon/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'image/icon/favicon-16x16.png' %}"">
+  <link rel="manifest" href="{% static 'image/icon/site.webmanifest' %}">
+</head>
+<body>
+  <header>
+      <nav>
+        <ul>
+          <il><img src="{% static 'image/pngegg.png' %}" alt="Logo" class="logoimg"/></il>
+          <li><a href="{% url 'game' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="#">Games</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+          <li><button class="my_button2"><a href="{% url 'login' %}">Login</a></button></li>
+          <li><button class="my_button2"><a href="{% url 'register' %}">Register</a></button></li>
+        </ul>
+      </nav>
+    </div>
+    <section class="hero">
+      <div class="container">
+        <h1>Welcome to GamePool !</h1>
+        <p>Find your favorite games here.</p>
+      </div>
+    </section>
+  </header>
+  <aside>
+    {% get_categories as categories %}
+    {% if cat_selected == 0 %}
+      <h3 class="selected">All Category</h3>
+    {% else %}
+      <h3><a href="{% url 'game' %}">All Category</a></h3>
+    {% endif %}
+  
+  
+    {% for c in categories %}
+      {% if c.pk == cat_selected %}
+        <button class="my_button1"><h3>{{c.name}}</h3></button>
+      {% else %}
+        <button class="my_button1"><a href="{{c.get_absolute_url}}"><h3>{{c.name}}</h3></a></button>
+      {% endif %}
+    {% endfor %}
+  </aside>
+  <main>
+  {% block content %}
+  {% endblock %}
+  </main>
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 Game Shop. All rights reserved.</p>
+      <nav>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
